@@ -61,13 +61,13 @@ And add this in your HTML:
 
 And:
 
-`<script type="text/javascript">`
-`	var ajax_load = "<img src='/wp-content/plugins/peersme/loading.gif' alt='loading...' />";`
-`	var loadUsers = "/wp-content/plugins/peersme/api.php?q=users";`
-`	$(document).ready(function () {`
-`		$("#users").html(ajax_load).load(loadUsers);`
-`	});`
-`</script>`
+`<script type="text/javascript">
+	var ajax_load = "<img src='/wp-content/plugins/peersme/loading.gif' alt='loading...' />";
+	var loadUsers = "/wp-content/plugins/peersme/api.php?q=users";
+	$(document).ready(function () {
+		$("#users").html(ajax_load).load(loadUsers);
+	});
+</script>`
 
 
 = 0.2 =
