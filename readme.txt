@@ -46,11 +46,11 @@ Yes, we've got a developers community on http://dev.peers.me for ideas and quest
 = 0.3 =
 
 Some code cleanup and these features:
-* Filter groups on "Label"; eg. [peersme list="groups" label="Project"]
-* Customizable templates; copy default.tpl and rename and edit it. Choose your template from settings
-* Customizable stylesheet; copy default.css and rename and edit it. Choose your stylesheet from settings
-* Tags on publications
-* Filter publications on duplicate waves
+*   Filter groups on "Label"; eg. [peersme list="groups" label="Project"]
+*   Customizable templates; copy default.tpl and rename and edit it. Choose your template from settings
+*   Customizable stylesheet; copy default.css and rename and edit it. Choose your stylesheet from settings
+*   Tags on publications
+*   Filter publications on duplicate waves
 
 It's also possible to make a ajax call to api.php. Just include jQuery like this:
 
