@@ -13,13 +13,21 @@ Author: Daniël Steginga
 
 /*WIDGET*/
 
+#peers-me-widget{
+	display: block;
+	background: #FFFFFF;
+	margin: 0 0 20px;
+	padding: 10px;
+	overflow: hidden;
+}
+
 #peers-me-widget-title{
 	display: block;
 	border-bottom: 1px dotted;
 	height: 24px;
 	margin-bottom: 5px;
-	font-size: 1.2em;
-	font-weight: bold;
+/*	font-size: 1.2em;*/
+/*	font-weight: bold;*/
 }
 
 #peers-me-widget-link{
@@ -27,15 +35,15 @@ Author: Daniël Steginga
 	border-top: 1px dotted;
 	height: 24px;
 	margin-top: 5px;
-	font-size: 1.0em;
-	font-weight: bold;
+/*	font-size: 1.0em;*/
+/*	font-weight: bold;*/
 	text-align: right;
 }
 
 
 #peers-me-widget .name{
-	font-size: 1.1em;
-	font-weight: bold;
+/*	font-size: 1.1em;*/
+/*	font-weight: bold;*/
 	margin-bottom: 5px;
 }
 
@@ -47,15 +55,7 @@ Author: Daniël Steginga
 	border: 0;
 }
 
-/* PUBLICATIONS WIDGET */
-#peers-me-widget{
-	display: block;
-	background: #FFFFFF;
-	border: 1px solid #AAAAAA;
-	margin: 0 0 20px;
-	padding: 20px;
-	overflow: hidden;
-}
+
 
 .content{
 	display: block;

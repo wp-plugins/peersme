@@ -1,15 +1,7 @@
 <?
 /**
- * FooWidget Class
+ * PeersMe widget for showing Peers.me resources
  */
-
-// $users_path = get_option ( 'peers_me_userspath' );
-// $groups_path = get_option ( 'peers_me_groupspath' );
-// $publications_path = get_option ( 'peers_me_publicationspath' );
-// if(empty($users_path)) $users_path = "users";
-// if(empty($groups_path)) $groups_path = "groups";
-// if(empty($publications_path)) $publications_path = "publications";
-
 
 class PeersMe extends WP_Widget {
     /** constructor */
@@ -27,6 +19,10 @@ class PeersMe extends WP_Widget {
 				$order = apply_filters('widget_order', $instance['order']);
 				$link = apply_filters('widget_link', $instance['link']);
 				$label = apply_filters('widget_label', $instance['label']);
+
+				$users_path = get_option ( 'peers_me_userspath' );
+				$groups_path = get_option ( 'peers_me_groupspath' );
+				$publications_path = get_option ( 'peers_me_publicationspath' );
 
 				//check if peers.me credentials are available
 				$peers_me_username = get_option ( 'peers_me_username' );
@@ -49,9 +45,9 @@ class PeersMe extends WP_Widget {
 				if($resource == "users") echo peers_me_users_index($atts); 
 				if($resource == "groups") echo peers_me_groups_index($atts); 
 				if($resource == "publications") echo peers_me_publications_index($atts,"",true); 
-				if($link == true && $resource == "users") echo "<p id=\"peers-me-widget-link\"><a href=\".$users_path.\">all users</a></p>";
-				if($link == true && $resource == "groups") echo "<p id=\"peers-me-widget-link\"><a href=\".$groups_path.\">all groups</a></p>";
-				if($link == true && $resource == "publications") echo "<p id=\"peers-me-widget-link\"><a href=\".$publications_path.\">all publications</a></p>";
+				if($link == true && $resource == "users" && !empty($users_path)) echo "<p id=\"peers-me-widget-link\"><a href=\"/".$users_path."\">all users</a></p>";
+				if($link == true && $resource == "groups" && !empty($groups_path)) echo "<p id=\"peers-me-widget-link\"><a href=\"/".$groups_path."\">all groups</a></p>";
+				if($link == true && $resource == "publications" && !empty($publications_path)) echo "<p id=\"peers-me-widget-link\"><a href=\"/".$publications_path."\">all publications</a></p>";
 				?>
 				</div>
 <?php
@@ -75,6 +71,13 @@ class PeersMe extends WP_Widget {
 
     /** @see WP_Widget::form */
     function form($instance) {				
+				if(empty($instance['title'])) $instance['title'] = "";
+				if(empty($instance['limit'])) $instance['limit'] = "";
+				if(empty($instance['resource'])) $instance['resource'] = "";
+				if(empty($instance['orderby'])) $instance['orderby'] = "";
+				if(empty($instance['order'])) $instance['order'] = "";
+				if(empty($instance['link'])) $instance['link'] = "";
+				if(empty($instance['label'])) $instance['label'] = "";
         $title = esc_attr($instance['title']);
 				$limit = esc_attr($instance['limit']);
 				$resource = esc_attr($instance['resource']);

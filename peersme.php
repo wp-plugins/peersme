@@ -16,6 +16,7 @@ include('includes/peers_me_widgets.php');
 include('includes/settings.inc.php');
 
 add_action('widgets_init', create_function('', 'return register_widget("PeersMe");'));
+add_action('widgets_init', create_function('', 'return register_widget("PeersMeLogin");'));
 
 // shortcodes... peers_me will be removed
 add_shortcode('peers_me', 'peers_me');
