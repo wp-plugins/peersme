@@ -32,9 +32,9 @@ function peers_me_publications_index($atts,$address = "",$widget=false){
 	
 	$publications_array = $publications_sorted;
 
+	$output = "";
+
 	if(!empty($publications_array)) { 
-			
-			$output = "";
 			
 			$i = 1;
 			$arr = array();

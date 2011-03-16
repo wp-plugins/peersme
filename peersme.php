@@ -3,7 +3,7 @@
 Plugin Name: Peers.me
 Plugin URI: http://www.peers.me
 Description: This plugin interacts with your Peers.me. Use these shortcodes on pages: [peersme], [peersme list="groups"], [peersme list="users" limit="5"]
-Version: 0.3
+Version: 0.4
 Author: Daniël Steginga
 Author URI: http://www.steginga.nl
 */

@@ -214,6 +214,8 @@ function show_tags($wave_id, $array_only = false){
 	$publication_xml = get_xml("publications/".urlencode($wave_id),0);
 	$tag_raw = xml_to_array($publication_xml,"tags");
 	
+	$output = "";
+	
 	if($array_only == true){
 		
 		$output = $tag_raw;
