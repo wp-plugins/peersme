@@ -49,6 +49,8 @@ function peers_me_users_index($atts,$address = ""){
 function peers_me_user_profile($address,$menu=false,$publications=false,$groups=false){
 	$users_xml = get_xml("users/".$address,0);
 	$users_raw = xml_to_array($users_xml,"user");
+
+	$profile_raw = xml_to_array($users_xml,"profile");
 	if(!empty($users_raw)) { 
 		$output = '';
 		foreach($users_raw as $user) { 
@@ -59,11 +61,14 @@ function peers_me_user_profile($address,$menu=false,$publications=false,$groups=
 		}
 		if(isset($_GET['page']) && $_GET['page'] == "publications"){
 			$atts['limit'] = 20;
+			$atts['offset'] = 0;
 			$output .= "<h2>Publications:</h2>";
 			$output .= peers_me_publications_index($atts,$address);			
 		} elseif(isset($_GET['page']) && $_GET['page'] == "info"){
 			$output .= "<h2>Info:</h2>";
-			$output .= peers_me_user_info($user);	
+			foreach($profile_raw as $profile) { 
+				$output .= peers_me_user_info($profile);	
+	    }
 		} elseif(isset($_GET['page']) && $_GET['page'] == "groups"){
 			$output .= "<h2>Groups:</h2>";
 			$atts = "";

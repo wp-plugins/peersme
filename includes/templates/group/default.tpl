@@ -5,8 +5,6 @@ Would you like to use your own template?
 2.) Change what you want at your own risk
 3.) Select your template on settings page for use
 
-Available variables: address, name, created_at
-Available functions: avatar_addres([address])
 */
 
 function peers_me_index_group_item($group){
@@ -48,13 +46,17 @@ function peers_me_group($group){
 	global $groups_path;
 	$avatar_url = str_replace(":style","large",$group['avatar_url']);
 
+	if(!empty($group['label'])){
+		$label .= '			<span class="label">'.$group['label'].'</span>';
+	}
+
 	$output = '
 		<div id="peers-profile"> 
 			<div> 
 				<a href="/'.$groups_path.'/?address='.$group['address'].'" alt="'.$group['name'].'" class="avatar-icon large" title="view '.$group['name'].'"><img alt="'.$group['address'].'" class="large" src="'.$avatar_url.'" /></a>
 			</div> 
 			<div> 
-				<h1 id="peers-profile-name">'.$group['name'].'</h1> 
+				<h1 id="peers-profile-name">'.$group['name'].'</h1>'.$label.' 
 					<div class=\'meta\'> 
 						<ul id=\'meta\'> 
 							<li><strong>address</strong>: '.$group['address'].'</li> 
@@ -109,7 +111,6 @@ function peers_me_group_info($group){
 <fieldset><legend>Basic information</legend><div class="inside"><div class="p"><label>Description</label><div class="meta-field">'.$group['info'].'</div></div></div></fieldset>
 	';
 	
-
 	return $output;
 }
 

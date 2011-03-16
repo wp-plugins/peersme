@@ -28,23 +28,34 @@ class PeersMe extends WP_Widget {
 				$link = apply_filters('widget_link', $instance['link']);
 				$label = apply_filters('widget_label', $instance['label']);
 
+				//check if peers.me credentials are available
+				$peers_me_username = get_option ( 'peers_me_username' );
+				$peers_me_password = get_option ( 'peers_me_password' );
+				if(empty($peers_me_username)||empty($peers_me_password)){
+
+					echo "Please check your API settings at the Plugin settings page:<br>";
+					echo "* Peers.me API username<br>";
+					echo "* Peers.me API password<br>";
+
+				} else {
         ?>
-<div id="peers-me-widget">
-	<p id="peers-me-widget-title"><? echo $title; ?></p>
-<? 
-$atts['limit'] = $limit;
-$atts['on'] = $orderby;
-$atts['sort'] = $order;
-$atts['label'] = $label;
-if($resource == "users") echo peers_me_users_index($atts); 
-if($resource == "groups") echo peers_me_groups_index($atts); 
-if($resource == "publications") echo peers_me_publications_index($atts,"",true); 
-if($link == true && $resource == "users") echo "<p id=\"peers-me-widget-link\"><a href=\".$users_path.\">all users</a></p>";
-if($link == true && $resource == "groups") echo "<p id=\"peers-me-widget-link\"><a href=\".$groups_path.\">all groups</a></p>";
-if($link == true && $resource == "publications") echo "<p id=\"peers-me-widget-link\"><a href=\".$publications_path.\">all publications</a></p>";
-?>
-</div>
+				<div id="peers-me-widget">
+					<p id="peers-me-widget-title"><? echo $title; ?></p>
+				<? 
+				$atts['limit'] = $limit;
+				$atts['on'] = $orderby;
+				$atts['sort'] = $order;
+				$atts['label'] = $label;
+				if($resource == "users") echo peers_me_users_index($atts); 
+				if($resource == "groups") echo peers_me_groups_index($atts); 
+				if($resource == "publications") echo peers_me_publications_index($atts,"",true); 
+				if($link == true && $resource == "users") echo "<p id=\"peers-me-widget-link\"><a href=\".$users_path.\">all users</a></p>";
+				if($link == true && $resource == "groups") echo "<p id=\"peers-me-widget-link\"><a href=\".$groups_path.\">all groups</a></p>";
+				if($link == true && $resource == "publications") echo "<p id=\"peers-me-widget-link\"><a href=\".$publications_path.\">all publications</a></p>";
+				?>
+				</div>
 <?php
+			}
 
     }
 

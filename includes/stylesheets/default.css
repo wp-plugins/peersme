@@ -75,6 +75,14 @@ Author: Daniël Steginga
     margin-right: 5px;
     padding: 0 3px 1px;
 }
+.label-red{
+    background-color: #4A6885;
+    color: white;
+    font-size: 0.9em;
+    font-weight: normal;
+    margin-right: 5px;
+    padding: 0 3px 1px;
+}
 
 .publisher{
 	display: block;
@@ -238,4 +246,11 @@ h2{
     margin-bottom: 20px;
 }
 
+.content .text img{
+	padding: 0;
+	margin: 5px;
+}
 
+.content .text{
+	overflow: hidden
+}

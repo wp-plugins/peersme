@@ -7,10 +7,15 @@ Available values in publication:
 */
 
 function peers_me_publications_index($atts,$address = "",$widget=false){
-	if(!empty($address)){
-		$publications_xml = get_xml("publications?placements=".$address,0);
+	if(!empty($atts['offset'])){
+		$offset = $atts['offset'];
 	} else {
-		$publications_xml = get_xml("publications.xml",0);
+		$offset = 0;
+	}
+	if(!empty($address)){
+		$publications_xml = get_xml("publications?placements=".$address,$offset);
+	} else {
+		$publications_xml = get_xml("publications.xml",$offset);
 	}
 	$publications_raw = xml_to_array($publications_xml,"publication");
 	
@@ -28,8 +33,11 @@ function peers_me_publications_index($atts,$address = "",$widget=false){
 	$publications_array = $publications_sorted;
 
 	if(!empty($publications_array)) { 
-			//start index tpl includen //////////////////// TODO
+			
+			$output = "";
+			
 			$i = 1;
+			$arr = array();
 			if($widget == true || !empty($atts['widget']) == true){
 	      foreach($publications_array as $publication) { 
 					
@@ -68,7 +76,7 @@ function peers_me_publications_index($atts,$address = "",$widget=false){
 }
 
 function peers_me_publication($wave_id){
-	// echo $wave_id;
+
 	$publication_xml = get_xml("publications/".urlencode($wave_id),0);
 	$publication_raw = xml_to_array($publication_xml,"publication");
 	if(!empty($publication_raw)) { 
@@ -81,7 +89,7 @@ function peers_me_publication($wave_id){
 }
 
 function peers_me_publications($atts){
-	//address checken???
+
 	if(!empty($_GET['wave_id'])){
 		$output = peers_me_publication($_GET['wave_id']);
 	} else {

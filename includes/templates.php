@@ -1,8 +1,5 @@
 <?
 
-// Available templates are "user"
-// So include these
-
 //check which templates are chosen
 
 $opt_name_group_template = 'peers_me_group_template';

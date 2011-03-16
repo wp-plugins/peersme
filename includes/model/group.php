@@ -78,6 +78,8 @@ function peers_me_groups_index($atts,$address = ""){
 function peers_me_group_profile($address,$menu=false,$publications=false,$groups=false){
 	$groups_xml = get_xml("groups/".$address,0);
 	$groups_raw = xml_to_array($groups_xml,"group");
+
+	$profile_raw = xml_to_array($groups_xml,"profile");
 	
 	if(!empty($groups_raw)) { 
 		$output = '';
@@ -93,7 +95,9 @@ function peers_me_group_profile($address,$menu=false,$publications=false,$groups
 			$output .= peers_me_publications_index($atts,$address);			
 		} elseif(isset($_GET['page']) && $_GET['page'] == "info"){
 			$output .= "<h2>Info:</h2>";
-			$output .= peers_me_group_info($group);	
+			foreach($profile_raw as $profile) { 
+				$output .= peers_me_group_info($profile);	
+	    }
 		} elseif(isset($_GET['page']) && $_GET['page'] == "members"){
 			$output .= "<h2>Users:</h2>";
 			$output .= peers_me_members($address,"user");

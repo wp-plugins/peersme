@@ -5,8 +5,6 @@ Would you like to use your own template?
 2.) Change what you want at your own risk
 3.) Select your template on settings page for use
 
-Available variables: address, name, created_at
-Available functions: avatar_addres([address])
 */
 
 
@@ -21,12 +19,9 @@ function peers_me_index_user_item($user){
 	$output .= '			<a title="view '.$user['name'].'" href="/'.$users_path.'/?address='.$user['address'].'"><span>'.$user['name'].'</span>';
 	$output .= '			<span class="address">('.$user['address'].')</span>';
 	$output .= '			</a></div>';
-	// info field not yet available
-	// $output .= '		<div class="description">'.$user['info'].'</div>';
 	$output .= '		</div>';
 	$output .= '	</div>';
 
-	
 	return $output;
 	
 }
@@ -35,10 +30,7 @@ function peers_me_index_user_thumb($user){
 	global $users_path;
 	$avatar_url = str_replace(":style","small",$user['avatar_url']);
 	
-	// $output .= ' 	<div class="content">';
 	$output = '		<a title="view '.$user['name'].'" class="avatar-icon thumb" alt="'.$user['address'].'" href="/'.$users_path.'/?address='.$user['address'].'"><img src="'.$avatar_url.'" class="thumb" alt="'.$user['address'].'"></a>';
-	// $output .= '		</div>';
-
 	
 	return $output;
 	
@@ -133,53 +125,6 @@ function peers_me_user_info($user){
 <fieldset><legend>Basic information</legend><div class="inside"><div class="p"><label>Company</label><div class="meta-field">'.$user['company_name'].'</div></div></div><div class="inside"><div class="p"><label>Function</label><div class="meta-field">'.$user['function'].'</div></div></div></fieldset>
 	';	
 
-	return $output;
-}
-
-function peers_me_user_twitter($user){
-
-	$twitter = str_replace("http://www.twiter.com/", "", $user['twitter']);
-	$twitter = str_replace("http://www.twitter.com/", "", $user['twitter']);	
-	$twitter = str_replace("http://twiter.com/", "", $user['twitter']);
-	$twitter = str_replace("http://twitter.com/", "", $user['twitter']);
-
-
-
-	$output = '
-		<script src="http://widgets.twimg.com/j/2/widget.js"></script>
-		<script>
-		new TWTR.Widget({
-		  version: 2,
-		  type: \'profile\',
-		  rpp: 4,
-		  interval: 6000,
-		  width: 300,
-		  height: 300,
-		  theme: {
-		    shell: {
-		      background: \'#cccccc\',
-		      color: \'#292929\'
-		    },
-		    tweets: {
-		      background: \'#ffffff\',
-		      color: \'#333333\',
-		      links: \'#ed2939\'
-		    }
-		  },
-		  features: {
-		    scrollbar: true,
-		    loop: false,
-		    live: false,
-		    hashtags: true,
-		    timestamp: true,
-		    avatars: false,
-		    behavior: \'all\'
-		  }
-		}).render().setUser(\''.$twitter.'\').start();
-		</script>
-	
-	';
-	
 	return $output;
 }
 
