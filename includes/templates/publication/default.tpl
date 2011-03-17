@@ -11,7 +11,14 @@ Would you like to use your own template?
 
 function peers_me_publication_view($publication){
 	$tags = show_tags($publication['wave_id']);
-	$output = '<p class="title">'.$publication['title'].$tags.'</p>';
+	
+	if(!empty($publication['agenda_date'])){
+		$date = " <span class=\"label-blue\">".date('F j, Y', strtotime($publication['agenda_date']))."</span>";
+	} else {
+		$date = "";
+	}
+	
+	$output = '<p class="title">'.$publication['title'].$tags.$date.'</p>';
 	$output .= '<p class="date">'.date('F j, Y', strtotime($publication['created_at'])).'</p>';
 	
 	//replace attachments
@@ -30,8 +37,14 @@ function peers_me_index_publication_item($publication,$publication_xml){
 	global $publications_path, $users_path;
 	$avatar_url = avatar_size($publication['publisher_avatar_url'],"small");
 
+	if(!empty($publication['agenda_date'])){
+		$date = " <span class=\"label-blue\">".date('F j, Y', strtotime($publication['agenda_date']))."</span>";
+	} else {
+		$date = "";
+	}
+
 	$output = '	<div class="content">';
-$output .= '		<div class="title"><a title="'.$publication['title'].'" href="/'.$publications_path.'/?wave_id='.$publication['wave_id'].'">'.$publication['title'].'</a></div>'; 
+$output .= '		<div class="title"><a title="'.$publication['title'].'" href="/'.$publications_path.'/?wave_id='.$publication['wave_id'].'">'.$publication['title'].'</a> '.$date.'</div>'; 
 	$output .= '		<div class="publisher">';
 	$output .= '			<a title="view '.$publication['publisher'].'" class="avatar-icon small" alt="'.$publication['publisher'].'" href="/'.$users_path.'/?address='.$publication['publisher'].'"><img src="'.$avatar_url.'" class="small" alt="'.$publication['publisher'].'"></a>';
 	$output .= '<span class="published-on">published on	'.date('F j, Y', strtotime($publication['created_at'])).'</span>';
