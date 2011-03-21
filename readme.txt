@@ -8,6 +8,10 @@ Stable tag: 0.4
 
 Peers.me is an group conversation tool for your company, school, sports team or community. This plugin makes it easy to access the public profiles and publications through the Peers.me API and display them in your WordPress site.
 
+*NEW*
+
+You can now reserve your group address at www.peers.me. We're starting with our invites in april.
+
 == Installation ==
 
 1. Upload the `peersme` to the `/wp-content/plugins/` directory or install directly through the plugin installer.
