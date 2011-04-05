@@ -104,7 +104,7 @@ function peers_me_options() {
 		<form name="peers-me" method="post" action="">
 			<input type="hidden" name="<? echo $hidden_field_name; ?>" value="Y">
 
-			<div class="rm_section">  
+			<div class="rm_section_peers">  
 			<div class="rm_title"><h3>Your <a href="http://www.peers.me">Peers.me</a> API credentials</h3><div class="clearfix"></div></div>
 			
 				<div class="rm_input rm_text"> 
@@ -265,7 +265,7 @@ if ($handle = opendir($includes_dir.'stylesheets')) {
 <br><br>
 <div class="rm_wrap">
 	<div class="rm_opts">
-		<div class="rm_section">  
+		<div class="rm_section_peers">  
 			<div class="rm_title"><h3>Shortcodes</h3><div class="clearfix"></div></div>
 
 			<div class="rm_comment">
@@ -295,7 +295,7 @@ if ($handle = opendir($includes_dir.'stylesheets')) {
 <br><br>
 <div class="rm_wrap">
 	<div class="rm_opts">
-		<div class="rm_section">  
+		<div class="rm_section_peers">  
 			<div class="rm_title"><h3>What is Peers.me?</h3><div class="clearfix"></div></div>
 
 			<div class="rm_comment">Never heard of Peers.me, watch this video and claim your Peers.me address at our <a href="http://www.peers.me">website</a>.</div>
