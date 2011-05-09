@@ -2,8 +2,8 @@
 /*
 Plugin Name: Peers.me
 Plugin URI: http://www.peers.me
-Description: This plugin interacts with your Peers.me. Use these shortcodes on pages: [peersme], [peersme list="groups"], [peersme list="users" limit="5"]
-Version: 0.4
+Description: This plugin interacts with your Peers.me for Group Communication. Register your Free Peers.me account at www.peers.me to use this plugin.
+Version: 0.5
 Author: Daniël Steginga
 Author URI: http://www.steginga.nl
 */

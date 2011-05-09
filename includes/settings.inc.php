@@ -120,7 +120,6 @@ function peers_me_options() {
 
 <?
 
-	// check if the credentials are aviablable
 	//check if peers.me credentials are available
 	$peers_me_username = get_option ( 'peers_me_username' );
 	$peers_me_password = get_option ( 'peers_me_password' );
@@ -141,24 +140,78 @@ function peers_me_options() {
 
 			<div class="rm_title"><h3>Paths</h3><div class="clearfix"></div></div>
 
-				<div class="rm_comment">To show users, groups and publications; create pages with the shortcode [peersme]. Please enter the paths of these pages here.</div>
+				<div class="rm_comment">To show users, groups and publications; create pages with the shortcode [peersme]. Please select these pages here.</div>
 
 				<div class="rm_input rm_text">
-					<label>Path for users</label>
-					<input type="text" name="<? echo $data_field_name_userspath; ?>" value="<? echo $opt_val_userspath; ?>" size="40">
-					<small>don't start with /</small>
+					<label>Page for users</label>
+					<select name="<? echo $data_field_name_userspath; ?>" id="<? echo $data_field_name_userspath; ?>" size="1">
+					<?
+					
+				  $pages = get_pages(); 
+				  foreach ($pages as $pagg) {
+						//check if selected
+						if($opt_val_userspath == get_page_link($pagg->ID)){
+				  		$option = '<option value="'.get_page_link($pagg->ID).'" selected>';
+						} else {
+				  		$option = '<option value="'.get_page_link($pagg->ID).'">';
+						}
+						$option .= $pagg->post_title;
+						$option .= '</option>';
+						echo $option;
+				  }
+					
+					?>
+					</select>
+					<!-- <input type="text" name="<? echo $data_field_name_userspath; ?>" value="<? echo $opt_val_userspath; ?>" size="40"> -->
+					<small>is there a shortcode [peersme]?</small>
 				</div>
 
 				<div class="rm_input rm_text">
-					<label>Path for groups</label>
-					<input type="text" name="<? echo $data_field_name_groupspath; ?>" value="<? echo $opt_val_groupspath; ?>" size="40">
-					<small>don't start with /</small>
+					<label>Page for groups</label>
+					<select name="<? echo $data_field_name_groupspath; ?>" id="<? echo $data_field_name_groupspath; ?>" size="1">
+					<?
+					
+				  $pages = get_pages(); 
+				  foreach ($pages as $pagg) {
+						//check if selected
+						if($opt_val_groupspath == get_page_link($pagg->ID)){
+				  		$option = '<option value="'.get_page_link($pagg->ID).'" selected>';
+						} else {
+				  		$option = '<option value="'.get_page_link($pagg->ID).'">';
+						}
+						$option .= $pagg->post_title;
+						$option .= '</option>';
+						echo $option;
+				  }
+					
+					?>
+					</select>
+					<!-- <input type="text" name="<? echo $data_field_name_groupspath; ?>" value="<? echo $opt_val_groupspath; ?>" size="40"> -->
+					<small>is there a shortcode [peersme]?</small>
 				</div>
 
 				<div class="rm_input rm_text">
-					<label>Path for publications</label>
-					<input type="text" name="<? echo $data_field_name_publicationspath; ?>" value="<? echo $opt_val_publicationspath; ?>" size="40">
-					<small>don't start with /</small>
+					<label>Page for publications</label>
+					<select name="<? echo $data_field_name_publicationspath; ?>" id="<? echo $data_field_name_publicationspath; ?>" size="1">
+					<?
+					
+				  $pages = get_pages(); 
+				  foreach ($pages as $pagg) {
+						//check if selected
+						if($opt_val_publicationspath == get_page_link($pagg->ID)){
+				  		$option = '<option value="'.get_page_link($pagg->ID).'" selected>';
+						} else {
+				  		$option = '<option value="'.get_page_link($pagg->ID).'">';
+						}
+						$option .= $pagg->post_title;
+						$option .= '</option>';
+						echo $option;
+				  }
+					
+					?>
+					</select>
+					<!-- <input type="text" name="<? echo $data_field_name_publicationspath; ?>" value="<? echo $opt_val_publicationspath; ?>" size="40"> -->
+					<small>is there a shortcode [peersme]?</small>
 				</div>
 
 			<div class="rm_title"><h3>Templates</h3><div class="clearfix"></div></div>

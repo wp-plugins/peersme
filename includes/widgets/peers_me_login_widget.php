@@ -1,15 +1,4 @@
 <?
-/**
- * FooWidget Class
- */
-
-// $users_path = get_option ( 'peers_me_userspath' );
-// $groups_path = get_option ( 'peers_me_groupspath' );
-// $publications_path = get_option ( 'peers_me_publicationspath' );
-// if(empty($users_path)) $users_path = "users";
-// if(empty($groups_path)) $groups_path = "groups";
-// if(empty($publications_path)) $publications_path = "publications";
-
 
 class PeersMeLogin extends WP_Widget {
     /** constructor */
@@ -20,13 +9,10 @@ class PeersMeLogin extends WP_Widget {
     /** @see WP_Widget::widget */
     function widget($args, $instance) {		
         extract( $args );
-        $title = apply_filters('widget_title', $instance['title']);
+        // $title = apply_filters('widget_title', $instance['title']);
         $text = apply_filters('widget_text', $instance['text']);
-				// $resource = apply_filters('widget_resource', $instance['resource']);
-				// $orderby = apply_filters('widget_orderby', $instance['orderby']);
-				// $order = apply_filters('widget_order', $instance['order']);
-				// $link = apply_filters('widget_link', $instance['link']);
-				// $label = apply_filters('widget_label', $instance['label']);
+				$title_markup = apply_filters('widget_title', $instance['title'] );
+				$title = $instance['title'];
 
 				//check if peers.me credentials are available
 				$peers_me_username = get_option ( 'peers_me_username' );
@@ -38,12 +24,25 @@ class PeersMeLogin extends WP_Widget {
 					echo "* Peers.me API password<br>";
 
 				} else {
+					
+					// Before widget (defined by themes)
+					echo $before_widget;
+
+					// Display the widget title if one was input (before and after defined by themes)
+					echo $before_title . $title_markup . $after_title;
+					
+					// Display a containing div ?>
+					<div id="peers-me-widget">
+						<p><? echo $text; ?></p>
+						<p id="peers-me-widget-link" class="peers-login"><a href="http://<? echo $peers_me_username; ?>.peers.me/">login</a></p>
+					</div>
+
+
+					<?php 
+					// After widget (defined by themes)
+					echo $after_widget;
+					
         ?>
-				<div id="peers-me-widget">
-					<p id="peers-me-widget-title"><? echo $title; ?></p>
-					<p><? echo $text; ?></p>
-					<p id="peers-me-widget-link"><a href="http://<? echo $peers_me_username; ?>.peers.me/">login</a></p>
-				</div>
 <?php
 			}
 
@@ -54,11 +53,6 @@ class PeersMeLogin extends WP_Widget {
 				$instance = $old_instance;
 				$instance['title'] = strip_tags($new_instance['title']);
 				$instance['text'] = strip_tags($new_instance['text']);
-				// $instance['resource'] = strip_tags($new_instance['resource']);
-				// $instance['orderby'] = strip_tags($new_instance['orderby']);
-				// $instance['order'] = strip_tags($new_instance['order']);
-				// $instance['link'] = strip_tags($new_instance['link']);
-				// $instance['label'] = strip_tags($new_instance['label']);
 
         return $instance;
     }
@@ -67,18 +61,10 @@ class PeersMeLogin extends WP_Widget {
     function form($instance) {				
 				if(empty($instance['title'])) $instance['title'] = "";
 				if(empty($instance['text'])) $instance['text'] = "";
-				// if(empty($instance['resource'])) $instance['resource'] = "";
-				// if(empty($instance['orderby'])) $instance['orderby'] = "";
-				// if(empty($instance['order'])) $instance['order'] = "";
-				// if(empty($instance['link'])) $instance['link'] = "";
-				// if(empty($instance['label'])) $instance['label'] = "";
-					 $title = esc_attr($instance['title']);
+
+				$title = esc_attr($instance['title']);
 				$text = esc_attr($instance['text']);
-				// $resource = esc_attr($instance['resource']);
-				// $orderby = esc_attr($instance['orderby']);
-				// $order = esc_attr($instance['order']);
-				// $link = esc_attr($instance['link']);
-				// $label = esc_attr($instance['label']);
+
         ?>
             <p>
 							<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?> 
@@ -91,6 +77,6 @@ class PeersMeLogin extends WP_Widget {
         <?php 
     }
 
-} // class FooWidget
+} 
 
 ?>

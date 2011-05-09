@@ -16,7 +16,7 @@ if(empty($opt_val_group_template)) $opt_val_group_template = "default.tpl";
 if(empty($opt_val_publication_template)) $opt_val_publication_template = "default.tpl";
 
 include('templates/user/'.$opt_val_user_template);
-include('templates/group/'.$opt_val_user_template);
+include('templates/group/'.$opt_val_group_template);
 include('templates/publication/'.$opt_val_publication_template);
 
 
