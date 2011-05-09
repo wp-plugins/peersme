@@ -3,14 +3,14 @@ Contributors: danielsteginga
 Donate link: http://peers.me/
 Tags: peers.me, community, API, groups, group conversation, forums, messaging, networking, profiles, social
 Requires at least: 3.0.4
-Tested up to: 3.0.4
-Stable tag: 0.4
+Tested up to: 3.1.2
+Stable tag: 0.5
 
 Peers.me is an group conversation tool for your company, school, sports team or community. This plugin makes it easy to access the public profiles and publications through the Peers.me API and display them in your WordPress site.
 
 *NEW*
 
-You can now reserve your group address at www.peers.me. We're starting with our invites in april.
+You can now create your FREE group address at www.peers.me. 
 
 == Installation ==
 
@@ -20,6 +20,7 @@ You can now reserve your group address at www.peers.me. We're starting with our 
 4. Create a page: 'users'. Make sure the slug is the same name. Place the following shortcode [peersme list="users"]
 5. Create a page: 'groups'. Make sure the slug is the same name. Place the following shortcode [peersme list="groups"]
 6. Create a page: 'publications'. Make sure the slug is the same name. Place the following shortcode [peersme list="publications"]
+7. Select pages at the settings page.
 
 You can change the paths for 'users', 'groups' and 'publications'. 
 
@@ -50,7 +51,12 @@ Yes, we've got a developers community on http://dev.peers.me for ideas and quest
 = 0.5 =
 
 Fixed some bugs with the widget.
+Fixed problems with the CSS on the settings page.
 Also a new 'login' widget which links to your peers.me inbox. This will be changed in future with a real login box.
+Select pages (users, groups and publications) instead of entering a path
+
+!! IMPORTANT UPDATE NOTICE !!
+!! Make sure to update your settings by selecting the right pages !!
 
 = 0.4 =
 

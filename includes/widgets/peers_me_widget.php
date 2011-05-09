@@ -136,6 +136,6 @@ class PeersMe extends WP_Widget {
         <?php 
     }
 
-} // class FooWidget
+}
 
 ?>

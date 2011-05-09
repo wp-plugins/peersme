@@ -4,6 +4,7 @@ if(empty($peers_me_password)) $peers_me_password = get_option ( 'peers_me_passwo
 
 $peers_me_address = $peers_me_username.".peers.me";
 
+
 function xml_value($xml_value,$value){
 	$output = $xml_value->getElementsByTagName("$value")->item(0)->nodeValue;
 	return $output;
@@ -14,6 +15,7 @@ function get_xml($url,$offset){
 
 	$peers_user_pass = $peers_me_username.":".$peers_me_password;
 	$peers_me_api_address = $peers_me_address."/api/";
+	
 	if(isset($offset)){ 
 		if(stristr($url, '?') === FALSE) $url .= "?offset=".$offset;
 		else $url .= "&offset=".$offset;
@@ -46,8 +48,6 @@ function get_xml($url,$offset){
 			echo "<strong>Peers.me is currently updating or unavailable</strong><br>";
 			echo "Please check our announcements on <a href=\"http://twitter.com/peersme\">twitter.com/peersme</a>";
 		}
-
-		// exit();
 	}
 	
 	curl_close($ch);
@@ -237,8 +237,6 @@ function show_tags($wave_id, $array_only = false){
 	
 	return $output;
 }
-
-
 
 
 // Get the first attached image from a wave

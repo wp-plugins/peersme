@@ -14,9 +14,9 @@ function peers_me_index_user_item($user){
 	
 	$output = '	<div class="index-item">';
 	$output .= ' 	<div class="content">';
-	$output .= '		<a title="view '.$user['name'].'" class="avatar-icon thumb" alt="'.$user['address'].'" href="/'.$users_path.'/?address='.$user['address'].'"><img src="'.$avatar_url.'" class="thumb" alt="'.$user['address'].'"></a>';
+	$output .= '		<a title="view '.$user['name'].'" class="avatar-icon thumb" alt="'.$user['address'].'" href="'.$users_path.'?address='.$user['address'].'"><img src="'.$avatar_url.'" class="thumb" alt="'.$user['address'].'"></a>';
 	$output .= '		<div class="title">';
-	$output .= '			<a title="view '.$user['name'].'" href="/'.$users_path.'/?address='.$user['address'].'"><span>'.$user['name'].'</span>';
+	$output .= '			<a title="view '.$user['name'].'" href="'.$users_path.'?address='.$user['address'].'"><span>'.$user['name'].'</span>';
 	$output .= '			<span class="address">('.$user['address'].')</span>';
 	$output .= '			</a></div>';
 	$output .= '		</div>';
@@ -30,7 +30,7 @@ function peers_me_index_user_thumb($user){
 	global $users_path;
 	$avatar_url = str_replace(":style","small",$user['avatar_url']);
 	
-	$output = '		<a title="view '.$user['name'].'" class="avatar-icon thumb" alt="'.$user['address'].'" href="/'.$users_path.'/?address='.$user['address'].'"><img src="'.$avatar_url.'" class="thumb" alt="'.$user['address'].'"></a>';
+	$output = '		<a title="view '.$user['name'].'" class="avatar-icon thumb" alt="'.$user['address'].'" href="'.$users_path.'?address='.$user['address'].'"><img src="'.$avatar_url.'" class="thumb" alt="'.$user['address'].'"></a>';
 	
 	return $output;
 	
@@ -43,7 +43,7 @@ function peers_me_user($user){
 	$output = '
 		<div id="peers-profile"> 
 			<div> 
-				<a href="/'.$users_path.'/?address='.$user['address'].'" alt="'.$user['name'].'" class="avatar-icon large" title="view '.$user['name'].'"><img alt="'.$user['address'].'" class="large" src="'.$avatar_url.'" /></a>
+				<a href="'.$users_path.'?address='.$user['address'].'" alt="'.$user['name'].'" class="avatar-icon large" title="view '.$user['name'].'"><img alt="'.$user['address'].'" class="large" src="'.$avatar_url.'" /></a>
 			</div> 
 			<div> 
 				<h1 id="peers-profile-name">'.$user['name'].'</h1> 
@@ -98,9 +98,9 @@ function peers_me_user_menu($user){
 	$output = '
 		<div id="tabmenu">
 			<div class="tabmenu-content">';
-	$output .= '				<a'.$publications_current.' href="/'.$users_path.'/?address='.$user['address'].'&page=publications">Blog</a>';
-	$output .= '				<a'.$info_current.' href="/'.$users_path.'/?address='.$user['address'].'&page=info">Info</a>';
-	$output .= '				<a'.$groups_current.' href="/'.$users_path.'/?address='.$user['address'].'&page=groups">Groups</a>';
+	$output .= '				<a'.$publications_current.' href="'.$users_path.'?address='.$user['address'].'&page=publications">Blog</a>';
+	$output .= '				<a'.$info_current.' href="'.$users_path.'?address='.$user['address'].'&page=info">Info</a>';
+	$output .= '				<a'.$groups_current.' href="'.$users_path.'?address='.$user['address'].'&page=groups">Groups</a>';
 	$output .= '			</div>
 		</div>
 	
