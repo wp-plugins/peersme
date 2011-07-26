@@ -4,7 +4,7 @@ Donate link: http://peers.me/
 Tags: peers.me, community, API, groups, group conversation, forums, messaging, networking, profiles, social
 Requires at least: 3.0.4
 Tested up to: 3.1.2
-Stable tag: 0.5
+Stable tag: 0.6
 
 Peers.me is an group conversation tool for your company, school, sports team or community. This plugin makes it easy to access the public profiles and publications through the Peers.me API and display them in your WordPress site.
 
@@ -47,6 +47,10 @@ We've developed a widget which let you configure resource, sorting and limiting.
 Yes, we've got a developers community on http://dev.peers.me for ideas and questions. If you would like to signup, please mail me at daniel [at] peers.me.
 
 == Changelog ==
+
+= 0.6 =
+
+Change to use the Peers.me API over HTTPS
 
 = 0.5 =
 
