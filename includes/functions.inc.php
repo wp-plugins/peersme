@@ -16,7 +16,7 @@ function get_xml($url,$offset){
 	$peers_user_pass = $peers_me_username.":".$peers_me_password;
 	$peers_me_api_address = "https://".$peers_user_pass."@".$peers_me_address."/api/".$url;
 	
-	$result = wp_remote_get( trailingslashit( $peers_me_api_address ), array( 'headers' => $headers, 'sslverify' => false ) );
+	$result = wp_remote_get( trailingslashit( $peers_me_api_address ), array( 'headers' => '', 'sslverify' => false ) );
 	
 	return $result['body'];
 }
