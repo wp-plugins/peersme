@@ -14,45 +14,11 @@ function get_xml($url,$offset){
 	global $unique_page_id, $peers_me_username, $peers_me_password, $peers_me_address;
 
 	$peers_user_pass = $peers_me_username.":".$peers_me_password;
-	$peers_me_api_address = $peers_me_address."/api/";
+	$peers_me_api_address = "https://".$peers_user_pass."@".$peers_me_address."/api/".$url;
 	
-	if(isset($offset)){ 
-		if(stristr($url, '?') === FALSE) $url .= "?offset=".$offset;
-		else $url .= "&offset=".$offset;
-	}
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $peers_me_api_address.$url);
-	curl_setopt($ch, CURLOPT_HEADER, FALSE);
-	curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-	curl_setopt($ch, CURLOPT_USERPWD, $peers_user_pass);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-	$api_return = curl_exec($ch);	
-	$curl_info = curl_getinfo($ch);
-
+	$result = wp_remote_get( trailingslashit( $peers_me_api_address ), array( 'headers' => $headers, 'sslverify' => false ) );
 	
-	if(curl_getinfo($ch, CURLINFO_HTTP_CODE) >= '300'){ 
-		$http_codes = parse_ini_file("http-codes.txt");
-		// echo "The server responded: <br />";
-		// echo $curl_info['http_code'] . " " . $http_codes[$curl_info['http_code']]."<br><br>";
-		if($curl_info['http_code'] == 401){
-			echo "Please check your API settings:<br>";
-			echo "* Peers.me address<br>";
-			echo "* Peers.me API username<br>";
-			echo "* Peers.me API password<br>";
-		}
-		if($curl_info['http_code'] == 404){
-			echo "<strong>This content is currently unavailable</strong><br>";
-			echo "The page you requested cannot be displayed right now. It may be temporarily unavailable, the link you clicked on may have expired, or you may not have permission to view this page.";
-		}
-		if($curl_info['http_code'] == 502){
-			echo "<strong>Peers.me is currently updating or unavailable</strong><br>";
-			echo "Please check our announcements on <a href=\"http://twitter.com/peersme\">twitter.com/peersme</a>";
-		}
-	}
-	
-	curl_close($ch);
-
-	return $api_return;
+	return $result['body'];
 }
 
 function avatar_address($address, $size) {
