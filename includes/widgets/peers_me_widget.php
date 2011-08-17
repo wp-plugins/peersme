@@ -120,7 +120,7 @@ class PeersMe extends WP_Widget {
 							</label>
 						</p>
             <p>
-							<label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Limit on:'); ?>
+							<label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Limit on (max. total):'); ?>
 							<input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo $limit; ?>" /></label>
 						</p>
             <p>

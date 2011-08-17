@@ -20,14 +20,14 @@ function peers_me_publications_index($atts,$address = "",$widget=false){
 	$publications_raw = xml_to_array($publications_xml,"publication");
 	
 	//sorting
-	if(isset($atts['on'])){
+	if(!empty($atts['on'])){
 		$publications_sorted = array_sort($publications_raw,$atts['on'],$atts['sort']);
 	} else {
 		$publications_sorted = array_sort($publications_raw,"created_at","DESC");
 	}
 	
 	//limiting
-	if(!isset($atts['limit']))
+	if(empty($atts['limit']))
 		$atts['limit'] = 100;
 	
 	$publications_array = $publications_sorted;

@@ -26,8 +26,6 @@ Author: Daniël Steginga
 	border-bottom: 1px dotted;
 	height: 24px;
 	margin-bottom: 5px;
-/*	font-size: 1.2em;*/
-/*	font-weight: bold;*/
 }
 
 #peers-me-widget-link{
@@ -35,15 +33,11 @@ Author: Daniël Steginga
 	border-top: 1px dotted;
 	height: 24px;
 	margin-top: 5px;
-/*	font-size: 1.0em;*/
-/*	font-weight: bold;*/
 	text-align: right;
 }
 
 
 #peers-me-widget .name{
-/*	font-size: 1.1em;*/
-/*	font-weight: bold;*/
 	margin-bottom: 5px;
 }
 
@@ -57,17 +51,17 @@ Author: Daniël Steginga
 
 
 
-.content{
+.psme-content{
 	display: block;
 }
 
-.title{
+.psme-title{
 	font-size: 1.1em;
 	font-weight: bold;
 	margin-bottom: 5px;
 }
 
-.label{
+.psme-label{
     background-color: #339900;
     color: white;
     font-size: 0.9em;
@@ -75,7 +69,7 @@ Author: Daniël Steginga
     margin-right: 5px;
     padding: 0 3px 1px;
 }
-.label-blue{
+.psme-label-blue{
     background-color: #4A6885;
     color: white;
     font-size: 0.9em;
@@ -84,22 +78,22 @@ Author: Daniël Steginga
     padding: 0 3px 1px;
 }
 
-.publisher{
+.psme-publisher{
 	display: block;
 	height: 40px;
 	margin-bottom: 15px;
 }
 
-.publisher span {
+.psme-publisher span {
     font-size: 0.9em;
     font-style: italic;
 }
 
-.publisher a{
+.psme-publisher a{
 	font-weight: bold;
 }
 
-.avatar-icon, .avatar-icon.small {
+.psme-avatar-icon, .psme-avatar-icon.psme-small {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #AAAAAA;
     display: inline;
@@ -111,7 +105,7 @@ Author: Daniël Steginga
     width: 40px;
 }
 
-.avatar-icon.large {
+.psme-avatar-icon.psme-large {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #AAAAAA;
     display: inline;
@@ -123,7 +117,7 @@ Author: Daniël Steginga
     width: 100px;
 }
 
-.read-more-line {
+.psme-read-more-line {
     display: block;
     border-bottom: 1px dotted #AAAAAA;
     overflow: hidden;
@@ -131,12 +125,12 @@ Author: Daniël Steginga
 	margin-bottom: 20px;
 }
 
-.read-more-line a{
+.psme-read-more-line a{
 	text-decoration: none;
 	font-weight: bold;
 }
 
-.index-item{
+.psme-index-item{
     display: block;
 	padding: 5px;
 	height: 60px;
@@ -161,7 +155,7 @@ h2{
 	margin: 0;
 }
 
-#peers-profile .large{
+#peers-profile .psme-large{
 	margin-right: 10px;
 }
 
@@ -173,13 +167,13 @@ h2{
 	margin-bottom: 5px;
 }
 
-#peers-profile .icon {
+#peers-profile .psme-icon {
     display: inline;
     float: left;
 	margin-right: 5px;
 }
 
-#tabmenu {
+#psme-tabmenu {
     display: block;
     background-color: #C4C4C4;
     color: #FFFFFF;
@@ -188,12 +182,12 @@ h2{
     padding: 5px 10px;
 }
 
-#tabmenu .tabmenu-content {
+#psme-tabmenu .psme-tabmenu-content {
     float: left;
     margin-left: 10px;
 }
 
-#tabmenu .tabmenu-content a {
+#psme-tabmenu .psme-tabmenu-content a {
     color: white;
     font-size: 1.1em;
     margin-right: 10px;
@@ -201,13 +195,13 @@ h2{
     text-decoration: none;
 }
 
-#tabmenu .tabmenu-content a.current, #tabmenu .tabmenu-content a:hover {
+#psme-tabmenu .psme-tabmenu-content a.current, #psme-tabmenu .psme-tabmenu-content a:hover {
     background-color: white;
     color: #666666;
     text-decoration: none;
 }
 
-#content .inside fieldset {
+#psme-content .inside fieldset {
     padding: 0;
 }
 
@@ -223,12 +217,12 @@ h2{
     font-weight: bold;
 }
 
-#peers-me .inside {
+#peers-me .psme-inside {
     display: block;
     padding: 20px;
 }
 
-#peers-me .p {
+#peers-me .psme-p {
     display: block;
 }
 
@@ -240,17 +234,17 @@ h2{
 	margin-bottom: 20px;
 }
 
-#peers-me .meta-field {
+#peers-me .psme-meta-field {
     float: left;
     width: 70%;
     margin-bottom: 20px;
 }
 
-.content .text img{
+.psme-content .psme-text img{
 	padding: 0;
 	margin: 5px;
 }
 
-.content .text{
+.psme-content .psme-text{
 	overflow: hidden
 }

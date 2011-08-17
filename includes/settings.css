@@ -1,3 +1,51 @@
+.warning{
+	border: 1px solid orange;
+	color: #000;
+	padding: 10px;
+	padding-top: 11px;
+	padding-left: 37px;
+	width: 690px;
+	background: #fff0cf url(/wp-content/plugins/peersme/includes/images/warning.png) no-repeat 12px center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.not-available{
+	border: 1px solid red;
+	color: #000;
+	padding: 10px;
+	padding-top: 11px;
+	padding-left: 37px;
+/*	width: 690px;*/
+	background: #ffcfcf url(http://www.peers.me/wp-content/themes/peers_me/images/wrong.png) no-repeat 12px center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.false{
+	border: 1px solid red;
+	color: #000;
+	padding: 10px;
+	padding-top: 11px;
+	padding-left: 37px;
+	width: 690px;
+	background: #ffcfcf url(http://www.peers.me/wp-content/themes/peers_me/images/wrong.png) no-repeat 12px center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.true, .success{
+	border: 1px solid green;
+	color: #000;
+	padding: 10px;
+	padding-top: 11px;
+	padding-left: 37px;
+	width: 690px;
+	background: #d1ffcf url(http://www.peers.me/wp-content/themes/peers_me/images/ok.png) no-repeat 12px center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
 .rm_wrap{
 	width:740px;
 	margin-bottom: 20px;
