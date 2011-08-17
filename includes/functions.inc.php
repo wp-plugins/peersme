@@ -13,10 +13,34 @@ function xml_value($xml_value,$value){
 function get_xml($url,$offset){
 	global $unique_page_id, $peers_me_username, $peers_me_password, $peers_me_address;
 
-	$peers_user_pass = $peers_me_username.":".$peers_me_password;
-	$peers_me_api_address = "https://".$peers_user_pass."@".$peers_me_address."/api/".$url;
+	$peers_me_api_address = "https://".$peers_me_address."/api/".$url;
+
+	$headers = array( 'Authorization' => 'Basic ' . base64_encode( "$peers_me_username:$peers_me_password" ) );
 	
-	$result = wp_remote_get( trailingslashit( $peers_me_api_address ), array( 'headers' => '', 'sslverify' => false ) );
+	$result = wp_remote_get( $peers_me_api_address, array( 'headers' => $headers, 'sslverify' => true ) );
+	
+	if( is_wp_error( $result ) ) {
+		
+		// SSL verify op false
+		$result = wp_remote_get( $peers_me_api_address, array( 'headers' => $headers, 'sslverify' => false ) );
+	}
+	
+	// echo $peers_me_api_address;
+	
+	// get response code
+	$code = $result['response']['code'];
+	$message = $result['response']['message'];
+	
+	// echo $code.$message;
+	
+	if($result['response']['code'] != "200"){
+		
+		// Oops, there's something wrong. Please check the Peers.me settings page
+		echo "<p class=\"not-available\">\"<strong>".$code." - ".$message."</strong>\" - Oops... please check the Peers.me settings page.</p>";
+		
+	}
+	
+	// echo $result['body'];
 	
 	return $result['body'];
 }
