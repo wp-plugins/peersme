@@ -3,7 +3,7 @@
 Plugin Name: Peers.me
 Plugin URI: http://www.peers.me
 Description: This plugin interacts with your Peers.me for Group Communication. Register your Free Peers.me account at www.peers.me to use this plugin.
-Version: 0.5
+Version: 0.7.1
 Author: Daniël Steginga
 Author URI: http://www.steginga.nl
 */
@@ -14,6 +14,11 @@ include('includes/model.php');
 include('includes/templates.php');
 include('includes/peers_me_widgets.php');
 include('includes/settings.inc.php');
+
+// From july-2011 Peers.me supports Markdown, so publications have a markdown version
+// The markdown to html script from http://michelf.com/ is included
+include('includes/markdown.php');
+
 
 add_action('widgets_init', create_function('', 'return register_widget("PeersMe");'));
 add_action('widgets_init', create_function('', 'return register_widget("PeersMeLogin");'));

@@ -15,7 +15,7 @@ function peers_me_menu() {
 
 function peers_me_options() {
 	if (!current_user_can('manage_options')) {
-		wp_die( __('You do not have sufficient permissions to acces this page.'));
+		wp_die( __('You do not have sufficient permissions to access this page.'));
 	}
 	
 	// variables for the field and option names
@@ -95,10 +95,73 @@ function peers_me_options() {
 
 	// Settings form
 ?>
+	
+<div class="rm_wrap wrap">
 	<h2>Peers.me</h2>
-<div class="rm_wrap">
 	<p>Welcome at the Peers.me options page. <br>
 		With this plugin, public profiles and publications can be shown on your WordPress website. If you would like to know more about Peers.me, scroll down for a short video. If you already got an API key, please provide this information down here.</p>
+	<p><?php
+	
+	// get API username and password
+	$peers_me_username = get_option ( 'peers_me_username' );
+	$peers_me_password = get_option ( 'peers_me_password' );
+	
+	// check if username and password are entered, if not message the Admin
+	$headers = array( 'Authorization' => 'Basic ' . base64_encode( "$peers_me_username:$peers_me_password" ) );
+	$result = wp_remote_get( "https://".$peers_me_username.".peers.me/api/users.xml", array( 'headers' => $headers, 'sslverify' => true ) );
+	
+	// check for SSL availability, if not, start a "sslverify false" connection
+	if( is_wp_error( $result ) ) {
+
+		// There's someting wrong with the connection over SSL, give error and try with 'sslverify' set to 'false'
+		$ssl_message = $result->get_error_message();
+		$ssl_code = $result->get_error_code();
+		echo "<p class=\"warning\"><strong>\"".$ssl_code."\"</strong> - We've couldn't setup a SSL connection. Not really a problem, but to understand what happened <a href=\"http://wordpress.org/extend/plugins/peersme/faq/\">read</a> the FAQ at the WordPress plugin page.</p>";
+
+		// SSL verify op false
+		$result = wp_remote_get( "https://".$peers_me_username.".peers.me/api/users.xml", array( 'headers' => $headers, 'sslverify' => false ) );
+	}
+	
+	// get code and message
+	$code = $result['response']['code'];
+	$message = $result['response']['message'];
+	
+	$credentials = false;
+	
+	if($result['response']['code'] == "200"){
+		
+		// Everything is ok and normal! Yeah!
+		$icon = "<img src=\"http://www.peers.me/wp-content/themes/peers_me/images/ok.png\">";
+		$credentials == true;
+		
+	} elseif($result['response']['code'] == "404"){
+		
+		// Oops, something is wrong with the API
+		echo "<p class=\"false\">\"".$code." - ".$message."\" - Uhh.. we've lost the API. Please contact us at support@peers.me</p>";
+		
+	} elseif($result['response']['code'] == "502"){
+		
+		// Peers.me is probably updating. Tell Admin to check the Twitter stream
+		echo "<p class=\"false\">\"".$code." - ".$message."\" - Peers.me is currently updating or unavailable. Please check our announcements on <a href=\"http://twitter.com/peersme\">twitter.com/peersme</a></p>";
+		
+	} elseif($result['response']['code'] == "401"){
+		
+		if(!empty($peers_me_username)){
+			
+			// Give the admin a link to his Admin page at Peers.me. Link is based on his API username.
+			echo "<p class=\"false\"><strong>\"".$code." - ".$message."\"</strong> - You've got the wrong API credentials! Please check them below. Don't know your API password? You can get it <a href=\"http://".$peers_me_username.".peers.me/admin/customer_configuration/edit\">here</a></p>";			
+			
+		} else {
+			
+			// Let the admin know he can find the credentials at his Admin page in Peers.me
+			echo "<p class=\"false\"><strong>\"".$code." - ".$message."\"</strong> - You've got the wrong API credentials! Please check them below. You can get them at your admin page in Peers.me</p>";
+			
+		}
+		
+	}
+		
+	
+	?></p>
 
 	<div class="rm_opts">
 		<form name="peers-me" method="post" action="">
@@ -110,20 +173,19 @@ function peers_me_options() {
 				<div class="rm_input rm_text"> 
 					<label>Peers.me API username</label>
 					<input type="text" name="<? echo $data_field_name_username; ?>" value="<? echo $opt_val_username; ?>" size="40">
-					.peers.me
+					.peers.me <?php if(!empty($icon)) echo $icon; ?>
 				</div>
 
 				<div class="rm_input rm_text"> 
 					<label>Peers.me API password</label>
-					<input type="text" name="<? echo $data_field_name_password; ?>" value="<? echo $opt_val_password; ?>" size="40">
+					<input type="text" name="<? echo $data_field_name_password; ?>" value="<? echo $opt_val_password; ?>" size="40"> <?php if(!empty($icon)) echo $icon; ?>
 				</div>
 
 <?
 
 	//check if peers.me credentials are available
-	$peers_me_username = get_option ( 'peers_me_username' );
-	$peers_me_password = get_option ( 'peers_me_password' );
 	if(empty($peers_me_username)||empty($peers_me_password)){
+	// if($credentials != false){
 ?>
 		<input type="hidden" name="<? echo $data_field_name_userspath; ?>" value="<? echo $opt_val_userspath; ?>">
 		<input type="hidden" name="<? echo $data_field_name_groupspath; ?>" value="<? echo $opt_val_groupspath; ?>">
@@ -330,18 +392,18 @@ if ($handle = opendir($includes_dir.'stylesheets')) {
 			</ul>
 			All of these resources can be listed and viewed through the use of shortcodes and widgets.<br><br>
 			<strong>List of possible shortcodes</strong><br>
-			[peersme list=”users”]<br>
-			[peersme list=”groups”]<br>
-			[peersme list=”publications”]<br><br>
+			[peersme list="users"]<br>
+			[peersme list="groups"]<br>
+			[peersme list="publications"]<br><br>
 			<strong>Limiting</strong><br>
-			[peersme list=”users” limit=”5″]<br><br>
+			[peersme list="users" limit="5″]<br><br>
 			<strong>Sorting</strong><br>
-			[peersme list=”users” on=”created_at”]<br>
-			[peersme list=”users” on=”created_at” sort=”DESC”]<br><br>
+			[peersme list="users" on="created_at"]<br>
+			[peersme list="users" on="created_at" sort="DESC"]<br><br>
 			<strong>Display one address</strong><br>
-			[peersme view=”address” address=”daniel”]<br><br>
+			[peersme view="address" address="daniel"]<br><br>
 			<strong>Display groups with a specific label</strong><br>
-			[peersme list=”groups” label=”Plugin-group”]</div>
+			[peersme list="groups" label="Plugin-group"]</div>
 		</div>
 	</div>
 </div>

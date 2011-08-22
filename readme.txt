@@ -4,13 +4,13 @@ Donate link: http://peers.me/
 Tags: peers.me, community, API, groups, group conversation, forums, messaging, networking, profiles, social
 Requires at least: 3.0.4
 Tested up to: 3.1.2
-Stable tag: 0.5
+Stable tag: 0.7.1
 
 Peers.me is an group conversation tool for your company, school, sports team or community. This plugin makes it easy to access the public profiles and publications through the Peers.me API and display them in your WordPress site.
 
 *NEW*
 
-You can now create your FREE group address at www.peers.me. 
+You can now create your FREE network account and personal account at www.peers.me. 
 
 == Installation ==
 
@@ -46,7 +46,27 @@ We've developed a widget which let you configure resource, sorting and limiting.
 
 Yes, we've got a developers community on http://dev.peers.me for ideas and questions. If you would like to signup, please mail me at daniel [at] peers.me.
 
+= I get an error about some SSL stuff. What's the problem? =
+
+Currently the API is connected over SSL. Some hostingproviders doesn't update their SSL Certicates archive. The connection tries to connect over this secure line by checking the certificate, but when this certificate isn't available we try to connect over SSL without the certificate but keep the connection encrypted.
+
 == Changelog ==
+
+= 0.7.1 =
+
+Problem fixed with ” in the examples on the settings page. Changed to ".
+
+= 0.7 =
+
+- Changed the method for connecting with the API. 
+- The settings page will show information if your API credentials are wrong
+- Changed also the used CSS classes in the templates and CSS
+
+!! PLEASE MAKE NOTICE OF THE CSS CHANGE IF YOU USED THE CLASSES !!
+
+= 0.6 =
+
+Change to use the Peers.me API over HTTPS
 
 = 0.5 =
 

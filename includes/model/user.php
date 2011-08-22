@@ -17,13 +17,13 @@ function peers_me_users_index($atts,$address = ""){
 	}
 	$users_raw = xml_to_array($users_xml,"user");
 	//sorting
-	if(isset($atts['on'])){
+	if(!empty($atts['on'])){
 		$users_sorted = array_sort($users_raw,$atts['on'],$atts['sort']);
 	} else {
 		$users_sorted = array_sort($users_raw,"name","ASC");
 	}
 	//limiting
-	if(isset($atts['limit'])){
+	if(!empty($atts['limit'])){
 		$users_limited = array_slice($users_sorted, 0, $atts['limit']);
 	} else {
 		$users_limited = $users_sorted;
@@ -80,8 +80,17 @@ function peers_me_user_profile($address,$menu=false,$publications=false,$groups=
 		} else {
 			if($publications == true){
 				$atts['limit'] = 5;
-				$output .= "<h2>Publications:</h2>";
-				$output .= peers_me_publications_index($atts,$address);
+				$publications = peers_me_publications_index($atts,$address);
+				
+				// $output .= "<h2>Publications:</h2>";
+				// $output .= peers_me_publications_index($atts,$address);
+				
+				if(!empty($publications)){ 
+					$output .= "<h2>Latest publications:</h2>";
+					$output .= $publications;
+				} else {
+					$output .= "<h2>User hasn't published any waves</h2>";
+				}
 			}
 		}
   }
