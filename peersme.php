@@ -3,7 +3,7 @@
 Plugin Name: Peers.me
 Plugin URI: http://www.peers.me
 Description: This plugin interacts with your Peers.me for Group Communication. Register your Free Peers.me account at www.peers.me to use this plugin.
-Version: 0.7
+Version: 0.7.1
 Author: Daniël Steginga
 Author URI: http://www.steginga.nl
 */

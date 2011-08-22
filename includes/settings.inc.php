@@ -392,18 +392,18 @@ if ($handle = opendir($includes_dir.'stylesheets')) {
 			</ul>
 			All of these resources can be listed and viewed through the use of shortcodes and widgets.<br><br>
 			<strong>List of possible shortcodes</strong><br>
-			[peersme list=”users”]<br>
-			[peersme list=”groups”]<br>
-			[peersme list=”publications”]<br><br>
+			[peersme list="users"]<br>
+			[peersme list="groups"]<br>
+			[peersme list="publications"]<br><br>
 			<strong>Limiting</strong><br>
-			[peersme list=”users” limit=”5″]<br><br>
+			[peersme list="users" limit="5″]<br><br>
 			<strong>Sorting</strong><br>
-			[peersme list=”users” on=”created_at”]<br>
-			[peersme list=”users” on=”created_at” sort=”DESC”]<br><br>
+			[peersme list="users" on="created_at"]<br>
+			[peersme list="users" on="created_at" sort="DESC"]<br><br>
 			<strong>Display one address</strong><br>
-			[peersme view=”address” address=”daniel”]<br><br>
+			[peersme view="address" address="daniel"]<br><br>
 			<strong>Display groups with a specific label</strong><br>
-			[peersme list=”groups” label=”Plugin-group”]</div>
+			[peersme list="groups" label="Plugin-group"]</div>
 		</div>
 	</div>
 </div>
