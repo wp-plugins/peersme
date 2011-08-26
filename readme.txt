@@ -52,6 +52,10 @@ Currently the API is connected over SSL. Some hostingproviders doesn't update th
 
 == Changelog ==
 
+= 0.7.2 = 
+
+Temp fix for problem with error handling.
+
 = 0.7.1 =
 
 Problem fixed with ” in the examples on the settings page. Changed to ".
