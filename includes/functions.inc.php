@@ -13,46 +13,36 @@ function xml_value($xml_value,$value){
 function get_xml($url,$offset){
 	global $unique_page_id, $peers_me_username, $peers_me_password, $peers_me_address;
 
-	$peers_user_pass = $peers_me_username.":".$peers_me_password;
-	$peers_me_api_address = $peers_me_address."/api/";
-	
-	if(isset($offset)){ 
-		if(stristr($url, '?') === FALSE) $url .= "?offset=".$offset;
-		else $url .= "&offset=".$offset;
-	}
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $peers_me_api_address.$url);
-	curl_setopt($ch, CURLOPT_HEADER, FALSE);
-	curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-	curl_setopt($ch, CURLOPT_USERPWD, $peers_user_pass);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-	$api_return = curl_exec($ch);	
-	$curl_info = curl_getinfo($ch);
+	$peers_me_api_address = "https://".$peers_me_address."/api/".$url;
 
+	$headers = array( 'Authorization' => 'Basic ' . base64_encode( "$peers_me_username:$peers_me_password" ) );
 	
-	if(curl_getinfo($ch, CURLINFO_HTTP_CODE) >= '300'){ 
-		$http_codes = parse_ini_file("http-codes.txt");
-		// echo "The server responded: <br />";
-		// echo $curl_info['http_code'] . " " . $http_codes[$curl_info['http_code']]."<br><br>";
-		if($curl_info['http_code'] == 401){
-			echo "Please check your API settings:<br>";
-			echo "* Peers.me address<br>";
-			echo "* Peers.me API username<br>";
-			echo "* Peers.me API password<br>";
-		}
-		if($curl_info['http_code'] == 404){
-			echo "<strong>This content is currently unavailable</strong><br>";
-			echo "The page you requested cannot be displayed right now. It may be temporarily unavailable, the link you clicked on may have expired, or you may not have permission to view this page.";
-		}
-		if($curl_info['http_code'] == 502){
-			echo "<strong>Peers.me is currently updating or unavailable</strong><br>";
-			echo "Please check our announcements on <a href=\"http://twitter.com/peersme\">twitter.com/peersme</a>";
-		}
+	$result = wp_remote_get( $peers_me_api_address, array( 'headers' => $headers, 'sslverify' => true ) );
+	
+	if( is_wp_error( $result ) ) {
+		
+		// SSL verify op false
+		$result = wp_remote_get( $peers_me_api_address, array( 'headers' => $headers, 'sslverify' => false ) );
 	}
 	
-	curl_close($ch);
-
-	return $api_return;
+	// echo $peers_me_api_address;
+	
+	// get response code
+	$code = $result['response']['code'];
+	$message = $result['response']['message'];
+	
+	// echo $code.$message;
+	
+	if($result['response']['code'] != "200"){
+		
+		// Oops, there's something wrong. Please check the Peers.me settings page
+		echo "<p class=\"not-available\">\"<strong>".$code." - ".$message."</strong>\" - Oops... please check the Peers.me settings page.</p>";
+		
+	}
+	
+	// echo $result['body'];
+	
+	return $result['body'];
 }
 
 function avatar_address($address, $size) {

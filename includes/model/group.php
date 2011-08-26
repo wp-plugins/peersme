@@ -10,27 +10,32 @@ function peers_me_groups_index($atts,$address = ""){
 	} else {
 		$groups_xml = get_xml("groups",0);
 	}
+
 	$groups_raw = xml_to_array($groups_xml,"group");
+
 	//sorting
-	if(isset($atts['on'])){
+	if(!empty($atts['on'])){
 		$groups_sorted = array_sort($groups_raw,$atts['on'],$atts['sort']);
 	} else {
 		$groups_sorted = array_sort($groups_raw,"name","ASC");
 	}
 	//limiting
-	if(isset($atts['limit'])){
+	if(!empty($atts['limit'])){
 		$groups_limited = array_slice($groups_sorted, 0, $atts['limit']);
 	} else {
 		$groups_limited = $groups_sorted;
 	}
 	$groups_array = $groups_limited;
+
+	// print_r($groups_array);
+
 	if(!empty($groups_array)) { 
 
 			$output = '';
 
  			if(!empty($atts['thumbs']) == true){
 
-						if(isset($atts['label'])){
+						if(!empty($atts['label'])){
 
 							 foreach($groups_array as $group) { 
 
@@ -42,7 +47,7 @@ function peers_me_groups_index($atts,$address = ""){
 						} else {
 				
 							foreach($groups_array as $group) { 
-
+								
 				         $output .= peers_me_index_group_thumb($group);
 
 				      }	
@@ -51,7 +56,7 @@ function peers_me_groups_index($atts,$address = ""){
 
 			} else {
 
-				if(isset($atts['label'])){
+				if(!empty($atts['label'])){
 
 					 foreach($groups_array as $group) { 
 
