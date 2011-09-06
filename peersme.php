@@ -3,7 +3,7 @@
 Plugin Name: Peers.me
 Plugin URI: http://www.peers.me
 Description: This plugin interacts with your Peers.me for Group Communication. Register your Free Peers.me account at www.peers.me to use this plugin.
-Version: 0.7.2
+Version: 0.8
 Author: Daniël Steginga
 Author URI: http://www.steginga.nl
 */
@@ -85,6 +85,7 @@ function peers_me($atts){
 			}
 			elseif(isset($atts['view']) && $atts['view'] == "address") $output .= peers_me_address($atts['address'],true,true,true);
 			elseif(isset($atts['view']) && $atts['view'] == "wave") $output .= peers_me_publication($atts['wave']);
+			elseif(isset($atts['create']) && $atts['create'] == "wave") $output .= peers_me_createwave($atts['address'],$atts['email']);
 			elseif(!empty($atts['address'])&&empty($atts['list'])) $output .= peers_me_address($atts['address'],!empty($atts['publications']),!empty($atts['groups']));
 			elseif($atts['list'] == "members") $output .= peers_me_members($atts['address']); //$atts['address']
 			elseif($atts['list'] == "users") $output .= peers_me_users_index($atts);
