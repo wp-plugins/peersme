@@ -396,7 +396,7 @@ if ($handle = opendir($includes_dir.'stylesheets')) {
 			[peersme list="groups"]<br>
 			[peersme list="publications"]<br><br>
 			<strong>Limiting</strong><br>
-			[peersme list="users" limit="5″]<br><br>
+			[peersme list="users" limit="5"]<br><br>
 			<strong>Sorting</strong><br>
 			[peersme list="users" on="created_at"]<br>
 			[peersme list="users" on="created_at" sort="DESC"]<br><br>
