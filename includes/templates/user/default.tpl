@@ -122,10 +122,6 @@ function peers_me_user_info($user){
 	$output = '
 <fieldset><legend>Basic information</legend><div class="psme-inside"><div class="psme-p"><label>Biography</label><div class="psme-meta-field">'.$user['info'].'</div></div></div></fieldset>
 	';
-	
-	$output .= '
-<fieldset><legend>Basic information</legend><div class="psme-inside"><div class="psme-p"><label>Company</label><div class="psme-meta-field">'.$user['company_name'].'</div></div></div><div class="inside"><div class="psme-p"><label>Function</label><div class="psme-meta-field">'.$user['function'].'</div></div></div></fieldset>
-	';	
 
 	return $output;
 }
